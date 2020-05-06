@@ -1,6 +1,9 @@
 const getHTML = require('html-get');
 const request = require('request');
 const cheerio = require('cheerio');
+const fs = require('fs');
+var https = require('https');
+const { DownloaderHelper } = require('node-downloader-helper');
 
 request(
   {
@@ -13,17 +16,21 @@ request(
     $('img').each((item, image) => {
       let img = $(image).attr('src');
       let mainUrl = 'https://memegen.link';
-
       let listUrl = mainUrl + img;
+      let finalListUrl = listUrl.replace(/[']/g, '').split('?')[0];
 
       if (item < 10) {
-        console.log(listUrl);
-        download(listUrl, item);
+        let list = [];
+
+        list.push(finalListUrl);
+        const dl = new DownloaderHelper(list[0], './image', __dirname);
+
+        dl.on('end', () => console.log('Download Completed'));
+        dl.start(); //console.log(list[0]);
       }
     });
   },
 );
-
 //console.log(listUrl);
 
 //let imgLink = [$('.row a')];

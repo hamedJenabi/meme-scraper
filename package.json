@@ -2,9 +2,12 @@
   "dependencies": {
     "@browserless/pool": "^7.1.2",
     "cheerio": "^1.0.0-rc.3",
+    "fs": "^0.0.1-security",
     "html-get": "^2.4.7",
+    "https": "^1.0.0",
     "image-scraper": "^0.2.1",
     "imagegrab": "^1.0.0",
+    "node-downloader-helper": "^1.0.12",
     "node-image-downloader": "^1.0.7",
     "request": "^2.88.2"
   }
